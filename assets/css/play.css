@@ -1,0 +1,55 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
+ Microsoft YaHei, '\5FAE\8F6F\96C5\9ED1', Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: 0.5s;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.iconfont {
+  cursor: pointer;
+}
+
+#player {
+  width: 300px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.new-todo {
+  margin: 0 auto;
+  font-size: 1.5rem;
+}
+
+.header h1 {
+  padding: 10px;
+}
+
+
+.view {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+}
+
+.play {
+  padding: 2px;
+}
+.play:hover{
+  color: #fff;
+  background: yellowgreen;
+}

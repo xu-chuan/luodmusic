@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>叻se播放器</title>
+  <link rel="stylesheet" href="./assets/css/play.css"
+</head>
+<body>
+  <section id="player">
+    <header class="header">
+      <h1>
+        <a href="">
+          <img src="https://static.easyicon.net/preview/123/1230638.gif" alt="">
+        </a>
+        叻se播放器
+      </h1>
+      <input v-model="inputValue" @keyup.enter="search" placeholder="请输入歌名" class="new-todo">
+    </header>
+    <!-- 列表 -->
+    <section class="main">
+      <audio :src="url" controls autoplay></audio>
+      <ui class="music-list">
+        <li v-for="(item,index) in results" :key="index" class="music">
+          <div class="view">
+            <span class="index">{{ index+1 }}.</span>
+            <label>{{ item.name }}</label>
+            <button @click="play(item.id)" class="play">播放</button>
+          </div>
+        </li>
+      </ui>
+    </section>
+    <footer>
+    </footer>
+  </section>
+
+  <script src="./assets/js/vue.js"></script>
+  <script src="./assets/js/axios.min.js"></script>
+  <script>
+    let app = new Vue({
+      el: "#player",
+      
+      data: {
+        hidd: false,
+        inputValue:'',
+        results: [],
+        url: ''
+      },
+      methods: {
+        search(){
+          // alert(this.inputValue)
+          axios({
+            url:"https://autumnfish.cn/search",
+            method:"get",
+            params:{
+              keywords:this.inputValue
+            }
+          }).then(res => {
+            // console.log(res);
+            this.results = res.data.result.songs
+          })
+        },
+        play(id){
+          // alert(id)
+          axios({
+            url: "https://autumnfish.cn/song/url",
+            method: "get",
+            params: {
+              id
+            }
+          }).then(res => {
+            // console.log(res);
+            this.url = res.data.data[0].url
+          })
+        }
+      }
+    })
+  </script>
+</body>
+</html>
